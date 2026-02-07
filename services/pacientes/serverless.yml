@@ -1,5 +1,6 @@
-service: clinica-pacientes
-frameworkVersion: "3"
+org: geraldocolchado
+app: clinica
+service: pacientes
 
 provider:
   name: aws

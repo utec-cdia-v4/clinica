@@ -2,7 +2,7 @@
 
 API REST para mantenimiento de pacientes, desplegada con AWS Lambda, API Gateway y DynamoDB.
 
-Creado con GitHub Copilot el 7 de febrero de 2026.
+Creado con GitHub Copilot y modelo LLM GPT-5.2-Codex el 7 de febrero de 2026.
 
 ## Funcionalidades
 - Registrar paciente.
