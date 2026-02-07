@@ -2,7 +2,7 @@
 
 API REST para registrar y consultar triajes, desplegada con AWS Lambda, API Gateway y DynamoDB.
 
-Creado con GitHub Copilot el 7 de febrero de 2026.
+Creado con GitHub Copilot y modelo LLM GPT-5.2-Codex el 7 de febrero de 2026.
 
 ## Funcionalidades
 - Registrar triaje con signos vitales.
@@ -17,7 +17,7 @@ Creado con GitHub Copilot el 7 de febrero de 2026.
 ## Despliegue automatico (API Gateway + Lambda + DynamoDB)
 1. Asegura que el rol IAM `labrole` exista y tenga permisos para Lambda, API Gateway, DynamoDB y CloudFormation.
 2. Instala Node.js (LTS) y Serverless Framework:
-   - `npm install -g serverless`
+   - `sudo npm install -g serverless`
 3. Entra a la carpeta del microservicio:
    - `cd services/triajes`
 4. Despliega:

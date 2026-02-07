@@ -1,5 +1,6 @@
-service: clinica-triajes
-frameworkVersion: "3"
+org: geraldocolchado
+app: clinica
+service: triajes
 
 provider:
   name: aws
