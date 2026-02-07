@@ -19,7 +19,7 @@ Creado con GitHub Copilot y modelo LLM GPT-5.2-Codex el 7 de febrero de 2026.
 ## Despliegue automatico (API Gateway + Lambda + DynamoDB)
 1. Asegura que el rol IAM `labrole` exista y tenga permisos para Lambda, API Gateway, DynamoDB y CloudFormation.
 2. Instala Node.js (LTS) y Serverless Framework:
-   - `npm install -g serverless`
+   - `sudo npm install -g serverless`
 3. Entra a la carpeta del microservicio:
    - `cd services/pacientes`
 4. Despliega indicando la URL del microservicio de triajes:
