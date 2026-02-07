@@ -1,5 +1,6 @@
-service: clinica-triaje-frontend
-frameworkVersion: "3"
+org: geraldocolchado
+app: clinica
+service: web
 
 plugins:
   - serverless-s3-sync
