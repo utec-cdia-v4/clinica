@@ -10,7 +10,7 @@ provider:
   region: us-east-1
   stage: dev
   iam:
-    role: arn:aws:iam::${aws:accountId}:role/labrole
+    role: arn:aws:iam::${aws:accountId}:role/LabRole
 
 custom:
   siteName: clinica-triaje-web-${sls:stage}
