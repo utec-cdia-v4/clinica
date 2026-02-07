@@ -19,7 +19,7 @@ Creado con GitHub Copilot y modelo LLM GPT-5.2-Codex el 7 de febrero de 2026.
 ## Despliegue automatico (S3 + Serverless)
 1. Asegura que el rol IAM `labrole` exista y tenga permisos para S3 y CloudFormation.
 2. Instala Node.js (LTS) y Serverless Framework:
-   - `npm install -g serverless`
+   - `sudo npm install -g serverless`
 3. Entra a la carpeta del frontend:
    - `cd frontend`
 4. Inicializa dependencias e instala el plugin de sincronizacion:
