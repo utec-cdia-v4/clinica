@@ -1,0 +1,46 @@
+service: clinica-triaje-frontend
+frameworkVersion: "3"
+
+plugins:
+  - serverless-s3-sync
+
+provider:
+  name: aws
+  region: us-east-1
+  stage: dev
+  iam:
+    role: arn:aws:iam::${aws:accountId}:role/labrole
+
+custom:
+  siteName: clinica-triaje-web-${sls:stage}
+  s3Sync:
+    - bucketName: ${self:custom.siteName}
+      localDir: public
+
+resources:
+  Resources:
+    WebAppBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.siteName}
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: false
+          BlockPublicPolicy: false
+          IgnorePublicAcls: false
+          RestrictPublicBuckets: false
+        WebsiteConfiguration:
+          IndexDocument: index.html
+          ErrorDocument: index.html
+    WebAppBucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket: ${self:custom.siteName}
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Sid: PublicRead
+              Effect: Allow
+              Principal: "*"
+              Action:
+                - s3:GetObject
+              Resource: arn:aws:s3:::${self:custom.siteName}/*

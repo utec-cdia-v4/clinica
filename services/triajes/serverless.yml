@@ -1,0 +1,52 @@
+service: clinica-triajes
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: python3.11
+  region: us-east-1
+  stage: dev
+  iam:
+    role: arn:aws:iam::${aws:accountId}:role/labrole
+  httpApi:
+    cors: true
+  environment:
+    TRIAJES_TABLE: ${self:service}-table-${sls:stage}
+
+functions:
+  createTriage:
+    handler: handler.create_triaje
+    events:
+      - httpApi:
+          path: /triajes
+          method: post
+  listTriages:
+    handler: handler.list_triajes
+    events:
+      - httpApi:
+          path: /triajes
+          method: get
+  getTriage:
+    handler: handler.get_triaje
+    events:
+      - httpApi:
+          path: /triajes/{dni}/{fechaHora}
+          method: get
+
+resources:
+  Resources:
+    TriagesTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.TRIAJES_TABLE}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: dni
+            AttributeType: S
+          - AttributeName: fechaHora
+            AttributeType: S
+        KeySchema:
+          - AttributeName: dni
+            KeyType: HASH
+          - AttributeName: fechaHora
+            KeyType: RANGE

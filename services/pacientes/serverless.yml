@@ -1,0 +1,55 @@
+service: clinica-pacientes
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: python3.11
+  region: us-east-1
+  stage: dev
+  iam:
+    role: arn:aws:iam::${aws:accountId}:role/labrole
+  httpApi:
+    cors: true
+  environment:
+    PATIENTS_TABLE: ${self:service}-table-${sls:stage}
+    TRIAJES_API_BASE: ${param:triajesApiBase, ""}
+
+functions:
+  createPatient:
+    handler: handler.create_patient
+    events:
+      - httpApi:
+          path: /pacientes
+          method: post
+  getPatient:
+    handler: handler.get_patient
+    events:
+      - httpApi:
+          path: /pacientes/{dni}
+          method: get
+  updatePatient:
+    handler: handler.update_patient
+    events:
+      - httpApi:
+          path: /pacientes/{dni}
+          method: put
+  deletePatient:
+    handler: handler.delete_patient
+    events:
+      - httpApi:
+          path: /pacientes/{dni}
+          method: delete
+
+resources:
+  Resources:
+    PatientsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.PATIENTS_TABLE}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: dni
+            AttributeType: S
+        KeySchema:
+          - AttributeName: dni
+            KeyType: HASH
