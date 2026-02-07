@@ -4,11 +4,11 @@ service: triajes
 
 provider:
   name: aws
-  runtime: python3.11
+  runtime: python3.14
   region: us-east-1
   stage: dev
   iam:
-    role: arn:aws:iam::${aws:accountId}:role/labrole
+    role: arn:aws:iam::${aws:accountId}:role/LabRole
   httpApi:
     cors: true
   environment:
